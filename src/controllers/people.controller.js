@@ -49,8 +49,8 @@ export const updatePerson = async (req, res) => {
       },
     }
   )
-    .then((person) => {
-      res.json(person);
+    .then(() => {
+      res.json({ message: "Person updated successfully" });
     })
     .catch((err) => {
       res.status(500).json({
@@ -64,20 +64,30 @@ export const deletePerson = async (req, res) => {
     where: {
       id: req.params.id,
     },
-  });
+  })
+    .then((person) => {
+      res.json({ message: "Person deleted successfully" });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
+      });
+    });
 };
 
 export const ageAverage = async (req, res) => {
   await People.findAll()
     .then((people) => {
       people.map((person) => {
-        const age = new Date().getFullYear() - new Date(person.birthday).getFullYear();
+        const age =
+          new Date().getFullYear() - new Date(person.birthday).getFullYear();
         person.age = age;
       });
-      const ageAverage = people.reduce((acc, person) => {
-        return acc + person.age;
-      }, 0) / people.length;
-      res.json({ageAverage});
+      const ageAverage =
+        people.reduce((acc, person) => {
+          return acc + person.age;
+        }, 0) / people.length;
+      res.json({ ageAverage });
     })
     .catch((err) => {
       res.status(500).json({
