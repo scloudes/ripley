@@ -9,11 +9,11 @@ import {
 } from "../controllers/people.controller";
 const router = express.Router();
 
-router.get("/api", getPeople);
-router.get("/api/average", ageAverage);
-router.get("/api/:id", getPerson);
-router.post("/api", createPerson);
-router.put("/api/:id", updatePerson);
-router.delete("/api/:id", deletePerson);
+router.get("/people", getPeople);
+router.get("/people/average", ageAverage);
+router.get("/people/:id", getPerson);
+router.post("/people", createPerson);
+router.put("/people/:id", updatePerson);
+router.delete("/people/:id", deletePerson);
 
 export default router;

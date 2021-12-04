@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
-app.use(PeopleRoutes);
+app.use("/api", PeopleRoutes);
 
 app.set("port", process.env.PORT || 3000);
 
