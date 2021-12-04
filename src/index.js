@@ -1,5 +1,6 @@
 import express from "express";
 import helmet from "helmet";
+import cors from "cors";
 import db from "./database";
 import PeopleRoutes from "./routes/people.routes";
 
@@ -12,9 +13,9 @@ db.authenticate()
   });
 
 const app = express();
-
 app.use(express.json());
 app.use(helmet());
+app.use(cors());
 app.use(PeopleRoutes);
 
 app.set("port", process.env.PORT || 3000);
